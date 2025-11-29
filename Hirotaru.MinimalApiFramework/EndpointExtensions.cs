@@ -50,6 +50,27 @@ public static class EndpointExtensions
         return app;
     }
 
+    /// <summary>
+    /// Scans the assembly containing <typeparamref name="TMarker"/> for implementations of
+    /// <see cref="IEndpoint"/> and <see cref="IEndpointGroup"/> and registers them as singletons.
+    /// </summary>
+    public static IServiceCollection AddEndpointsFromAssemblyContaining<TMarker>(
+        this IServiceCollection services)
+    {
+        ArgumentNullException.ThrowIfNull(services);
+
+        services.Scan(scan => scan
+            .FromAssemblyOf<TMarker>()
+            .AddClasses(c => c.AssignableTo<IEndpoint>())
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime()
+            .AddClasses(c => c.AssignableTo<IEndpointGroup>())
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime());
+
+        return services;
+    }
+    
     private static void ValidateGroups(
         IReadOnlyCollection<IEndpointGroup> endpointGroups,
         IReadOnlyCollection<IEndpoint> endpoints)
@@ -78,26 +99,5 @@ public static class EndpointExtensions
             throw new InvalidOperationException(
                 $"Endpoints refer to missing groups: {string.Join(", ", missingGroupReferences)}");
         }
-    }
-
-    /// <summary>
-    /// Scans the assembly containing <typeparamref name="TMarker"/> for implementations of
-    /// <see cref="IEndpoint"/> and <see cref="IEndpointGroup"/> and registers them as singletons.
-    /// </summary>
-    public static IServiceCollection AddEndpointsFromAssemblyContaining<TMarker>(
-        this IServiceCollection services)
-    {
-        ArgumentNullException.ThrowIfNull(services);
-
-        services.Scan(scan => scan
-            .FromAssemblyOf<TMarker>()
-            .AddClasses(c => c.AssignableTo<IEndpoint>())
-                .AsImplementedInterfaces()
-                .WithSingletonLifetime()
-            .AddClasses(c => c.AssignableTo<IEndpointGroup>())
-                .AsImplementedInterfaces()
-                .WithSingletonLifetime());
-
-        return services;
     }
 }

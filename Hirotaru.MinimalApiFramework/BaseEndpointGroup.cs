@@ -18,8 +18,8 @@ public abstract class BaseEndpointGroup : IEndpointGroup
 
     public void MapGroup(IEndpointRouteBuilder app, IEnumerable<IEndpoint> endpoints)
     {
-        if (app is null) throw new ArgumentNullException(nameof(app));
-        if (endpoints is null) throw new ArgumentNullException(nameof(endpoints));
+        ArgumentNullException.ThrowIfNull(app);
+        ArgumentNullException.ThrowIfNull(endpoints);
 
         RouteGroupBuilder group;
 

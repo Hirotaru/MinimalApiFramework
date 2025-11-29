@@ -4,6 +4,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TargetFrameworks>net10.0;net9.0</TargetFrameworks>
+
+        <PackageId>Hirotaru.MinimalApiFramework</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>Andrey Khanin</Authors>
+        <Description>Minimal API endpoint discovery and grouping utilities.</Description>
     </PropertyGroup>
 
     <ItemGroup>
