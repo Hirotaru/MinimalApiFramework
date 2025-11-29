@@ -4,15 +4,22 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TargetFrameworks>net10.0;net9.0</TargetFrameworks>
-
+        
         <PackageId>Hirotaru.MinimalApiFramework</PackageId>
-        <Version>0.1.0</Version>
+        <Version>1.0.0</Version>
         <Authors>Andrey Khanin</Authors>
-        <Description>Minimal API endpoint discovery and grouping utilities.</Description>
+        <Description>Minimal API endpoint discovery and grouping utilities for ASP.NET Core.</Description>
+        <PackageTags>minimal-api;aspnetcore;endpoints;routing</PackageTags>
+        <RepositoryUrl>https://github.com/Hirotaru/MinimalApiFramework</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <None Include="README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
